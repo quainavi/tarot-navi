@@ -52,15 +52,6 @@ button:active {
     width: 100%;
     height: 85vh;
     margin: 30px auto;
-    
-}
-
-@media (max-width: 768px) {
-
-    #card-container {
-        min-height: 1300px;
-    }
-
 }
 
 .card {
@@ -100,11 +91,12 @@ button:active {
 
 }
 .card.hover {
-    transform: translateY(-30px);
+    margin-top: -30px;
 }
 .card.selected {
 
     transition: all 0.8s ease;
+
     z-index: 999;
 
 }
@@ -190,7 +182,7 @@ button:active {
 
     color:white;
 
-    margin:0;
+    margin-top:-70px;
 
 }
 
@@ -211,25 +203,6 @@ button:active {
     color:#ffe28a;
 
 }
-
-@media (max-width:768px){
-
-    .result{
-        width:90px;
-    }
-
-    .result h3{
-        font-size:14px;
-        margin-top:0;
-    }
-
-    .result p{
-        font-size:12px;
-        margin-top:2px;
-    }
-
-}
-
 @media (max-width: 768px) {
 
     h1 {
@@ -250,12 +223,5 @@ button:active {
         font-size: 16px;
         padding: 12px 28px;
     }
-    
 
-}
-.card img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 10px;
 }

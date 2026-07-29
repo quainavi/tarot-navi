@@ -121,44 +121,17 @@ function selectCard(card) {
     if (selectedCards.length >= 3) return;
 
     card.classList.add("selected");
-    card.classList.remove("hover");
 
     selectedCards.push(card);
 
     const order = selectedCards.length - 1;
-
-const isMobile = window.innerWidth <= 768;
-
-if (isMobile) {
-
-    const gap = 120;
-
-    const totalWidth = gap * 2;
-
-    const startX =
-    (cardContainer.clientWidth - totalWidth) / 2 - 33;
-
-    card.style.left =
-    `${startX + order * gap}px`;
-
-    card.style.top = "760px";
-
-    card.style.left = `${startX + order * gap}px`;
-    card.style.top = "760px";
-    card.style.bottom = "auto";
-
-} else {
 
     const startX = cardContainer.clientWidth / 2 - 295;
     const gap = 220;
 
     card.style.left = `${startX + order * gap}px`;
     card.style.top = "600px";
-
-}
-
-card.style.transform = "rotate(0deg)";
-card.style.zIndex = "9999";
+    card.style.transform = "rotate(0deg)";
 
     // 이제 뒤집을 수 있음
     card.dataset.canFlip = "true";
@@ -180,12 +153,6 @@ function flipCard(card) {
 
     card.classList.add("flipped");
 
-    card.classList.remove("hover");
-    card.style.marginTop = "0";
-    card.style.transform = "rotate(0deg)";
-
-    card.style.top = window.innerWidth <= 768 ? "760px" : "600px";
-
     if (card.tarotData.reversed) {
 
         card.innerHTML = `
@@ -196,7 +163,6 @@ function flipCard(card) {
                     height:100%;
                     border-radius:10px;
                     transform:rotate(180deg);
-                    transform-origin:center center;
                 ">
         `;
 
@@ -213,8 +179,6 @@ function flipCard(card) {
         `;
 
     }
-
-    card.style.transform = "translate(0, 0) rotate(0deg)";
 
     showResult(card);
 
@@ -239,15 +203,6 @@ function showResult(card) {
     `;
 
     resultContainer.appendChild(result);
-
-    result.style.position = "absolute";
-
-    result.style.left = card.style.left;
-
-    result.style.top =
-    window.innerWidth <= 768
-        ? "790px"
-        : "860px";
 
 }
 
@@ -301,65 +256,19 @@ function fanCards() {
         containerRect.left +
         buttonRect.width / 2;
 
-    const isMobile = window.innerWidth <= 768;
-
-    // ===============================
-    // 모바일 : 격자 배치
-    // ===============================
-
-    if (isMobile) {
-
-        const columns = 12;     // 한 줄 카드 개수
-        const gapX = 40;       // 가로 간격
-        const gapY = 80;       // 세로 간격
-
-        const startX =
-            (cardContainer.clientWidth - columns * gapX) / 2 -20;
-
-        const startY = 40;
-
-        cards.forEach((card, index) => {
-
-            const col = index % columns;
-            const row = Math.floor(index / columns);
-
-            card.style.left =
-                `${startX + col * gapX}px`;
-
-            card.style.top =
-                `${startY + row * gapY}px`;
-
-            card.style.transform = "translate(0, 0) rotate(0deg)";
-            card.style.zIndex = "999";
-            card.style.position = "absolute";
-
-            card.classList.remove("shuffle");
-
-        });
-
-        return;
-    }
-
-    // ===============================
-    // PC : 기존 부채꼴 배치
-    // ===============================
-
-    const radius = 420;
-    const startAngle = -70;
-    const endAngle = 70;
-    const centerYOffset = 500;
-
     const centerY =
         buttonRect.bottom -
         containerRect.top +
-        centerYOffset;
+        500;
+
+    const radius = 420;
 
     cards.forEach((card, index) => {
 
         const angle =
-            startAngle +
-            (index / (cards.length - 1)) *
-            (endAngle - startAngle);
+            -70 +
+            (index / (cards.length - 1)) * 140 +
+            1;
 
         const x =
             centerX +
@@ -385,7 +294,6 @@ function fanCards() {
     });
 
 }
-
 // ===============================
 // 이미지 경로
 // ===============================
@@ -446,18 +354,6 @@ function showResult(card) {
     `;
 
     resultContainer.appendChild(result);
-    result.style.position = "absolute";
-    const order = selectedCards.indexOf(card);
-    let offset = 0;
-    if (order === 0) offset = 10;      // 첫 번째 글자 오른쪽
-    if (order === 2) offset = -10;     // 세 번째 글자 왼쪽
-
-    result.style.left =
-    `${parseFloat(card.style.left) + offset}px`;
-    result.style.top =
-    window.innerWidth <= 768
-        ? "950px"
-        : "860px";
 
     // 나중에 해석을 붙이기 위해 저장
     card.resultElement = result;
