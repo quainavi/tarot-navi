@@ -59,7 +59,7 @@ button:active {
     width: 150px;
     height: 240px;
     background-color: #91c8dd;
-    border: 2px solid #ffffff;
+    border: 5px solid #ffffff;
     border-radius: 10px;
     color: white;
 
@@ -83,7 +83,7 @@ button:active {
 
 
 .card.hover {
-    margin-top: -30px;
+    margin-top: -60px;
 }
 .card.selected {
 
@@ -196,3 +196,74 @@ button:active {
 
 }
 
+/* ===============================
+   모바일 전용
+=============================== */
+@media (max-width: 768px) {
+
+    .korean {
+    margin-top: -10px;
+     }
+
+    h1 {
+        font-size: 34px;
+        margin-top: 0px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    .card {
+        width: 55px;
+        height: 88px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px 28px;
+    }
+    .result h3 {
+        font-size: 12px;
+        margin-top: 95px;
+        line-height: 1.2;
+    }
+
+    .result p {
+        font-size: 10px;
+        margin-top: 2px;
+    }
+
+    #result-container {
+        gap: 60px;
+    }
+    #result-container{
+
+    position: relative;
+    display: block;
+    margin-top: 0;
+
+}
+
+.result{
+
+    width: 55px;
+    text-align: center;
+
+}
+
+.result h3{
+
+    margin-top: 0;
+    font-size: 11px;
+    line-height: 1.2;
+
+}
+
+.result p{
+
+    margin-top: 2px;
+    font-size: 10px;
+
+}
+}

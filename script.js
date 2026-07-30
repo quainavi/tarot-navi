@@ -132,6 +132,16 @@ function selectCard(card) {
     card.style.left = `${startX + order * gap}px`;
     card.style.top = "600px";
     card.style.transform = "rotate(0deg)";
+    if (window.innerWidth <= 768) {
+
+    const mobileGap = 70;
+    const mobileStartX =
+        (cardContainer.clientWidth - mobileGap * 2) / 2 - 30;
+
+    card.style.left = `${mobileStartX + order * mobileGap}px`;
+    card.style.top = "720px";
+
+}
 
     // 이제 뒤집을 수 있음
     card.dataset.canFlip = "true";
@@ -203,7 +213,16 @@ function showResult(card) {
     `;
 
     resultContainer.appendChild(result);
+// 모바일에서만 적용
+if (window.innerWidth <= 768) {
 
+    result.style.position = "absolute";
+
+    result.style.left = card.style.left;
+
+    result.style.top = "810px";
+
+}
 }
 
 
@@ -255,7 +274,39 @@ function fanCards() {
         buttonRect.left -
         containerRect.left +
         buttonRect.width / 2;
+const isMobile = window.innerWidth <= 768;
 
+if (isMobile) {
+
+    const columns = 9;
+    const gapX = 30;
+    const gapY = 70;
+
+    const startX =
+        (cardContainer.clientWidth - (columns - 1) * gapX) / 2 - 30;
+
+    const startY = 40;
+
+    cards.forEach((card, index) => {
+
+        const col = index % columns;
+        const row = Math.floor(index / columns);
+
+        card.style.left =
+            `${startX + col * gapX}px`;
+
+        card.style.top =
+            `${startY + row * gapY}px`;
+
+        card.style.transform = "rotate(0deg)";
+
+        card.classList.remove("shuffle");
+
+    });
+
+    return;
+
+}
     const centerY =
         buttonRect.bottom -
         containerRect.top +
@@ -354,7 +405,17 @@ function showResult(card) {
     `;
 
     resultContainer.appendChild(result);
+if (window.innerWidth <= 768) {
 
+    result.style.position = "absolute";
+
+    // 카드와 같은 x좌표 사용
+    result.style.left = card.style.left;
+
+    // 카드보다 조금 아래
+    result.style.top = "300px";
+
+}
     // 나중에 해석을 붙이기 위해 저장
     card.resultElement = result;
 
