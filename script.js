@@ -435,7 +435,7 @@ if (window.innerWidth <= 768) {
     result.style.left = card.style.left;
 
     // 카드보다 조금 아래
-    result.style.top = "300px";
+    result.style.top = "400px";
 
 }
     // 나중에 해석을 붙이기 위해 저장
