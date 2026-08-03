@@ -84,19 +84,41 @@ function createCards() {
 
         });
 
-        card.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
 
-            if (card.classList.contains("selected")) {
+    card.addEventListener("touchstart", function (e) {
 
-                flipCard(card);
+        e.preventDefault();
 
-                return;
+        if (card.classList.contains("selected")) {
 
-            }
+            flipCard(card);
 
-            selectCard(card);
+            return;
 
-        });
+        }
+
+        selectCard(card);
+
+    });
+
+} else {
+
+    card.addEventListener("click", function () {
+
+        if (card.classList.contains("selected")) {
+
+            flipCard(card);
+
+            return;
+
+        }
+
+        selectCard(card);
+
+    });
+
+}
 
         cardContainer.appendChild(card);
 
@@ -413,7 +435,7 @@ if (window.innerWidth <= 768) {
     result.style.left = card.style.left;
 
     // 카드보다 조금 아래
-    result.style.top = "300px";
+    result.style.top = "238px";
 
 }
     // 나중에 해석을 붙이기 위해 저장
